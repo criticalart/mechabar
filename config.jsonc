@@ -46,10 +46,10 @@
 	"height": 0,
 	"width": 0,
 	"margin": 0,
-	// "margin-top":
-	// "margin-left":
+	"margin-top": 4,
+	"margin-left": 4,
 	// "margin-bottom":
-	// "margin-right":
+	"margin-right": 4,
 	"spacing": 0,
 	// "name":
 	"mode": "dock",
@@ -258,10 +258,10 @@
 		"format": "{}",
 		"rewrite": {
 			"^$": "Desktop",
-			"^Alacritty$": "btop++",
+			// "^Alacritty$": "btop++",
 			"^cava$": "CAVA",
 			"(.*) — Mozilla Firefox": "Firefox",
-			"(.*)@caliburn(.*)": "Alacritty"
+			"btop": "BTOP++"
 		},
 		// "separate-outputs":
 		// "icon":
@@ -348,7 +348,7 @@
 		// "on-scroll-up":
 		// "on-scroll-down":
 		// "smooth-scrolling-threshold":
-		// "tooltip":
+		"tooltip": false,
 		// "tooltip-format":
 		// "escape":
 	},
@@ -460,7 +460,7 @@
 
 	"custom/power_menu": {
 		"format": "\uf359",
-		"on-click": "omarchy-launch-floating-terminal-with-presentation ~/.config/waybar/scripts/power-menu.sh",
+		"on-click": "alacritty --class=Impala --hold -e fastfetch -c ~/.config/fastfetch/config-small.jsonc",
 		"tooltip": false
 	},
 
