@@ -1,4 +1,4 @@
-<div align="center"><h2>🤖 mechabar</h2></div>
+<div align="center"><h2>gaybar</h2></div>
 
 <table>
 	<tr>
