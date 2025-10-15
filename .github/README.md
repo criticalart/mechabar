@@ -1,4 +1,4 @@
-<div align="center"><h2>gaybar</h2></div>
+<div align="center"><h2>more like gaybar lmao</h2></div>
 
 <table>
 	<tr>
