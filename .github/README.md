@@ -2,7 +2,7 @@
 
 This is my personal waybar configuration in calOS, forked over from the great mechabar (https://github.com/sejjy/mechabar)
 
-<p align="center"
+<p align="center">
 			<img width="3440" height="408" alt="image" src="https://github.com/user-attachments/assets/393b101b-42ee-4efa-9354-b51cc15fa84b" />
 </p>
 
