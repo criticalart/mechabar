@@ -5,7 +5,7 @@
 @import "../calos/current/theme/waybar.css";
 
 * {
-  font-family: 'CaskaydiaMono Nerd Font';
+  font-family: 'JetBrainsMono Nerd Font';
 	font-size: 15px;
 	color: @main-fg;
 }
@@ -82,9 +82,38 @@ tooltip decoration {
 
 /* right-module-options */
 
-#network,
-#bluetooth,
-#pulseaudio,
-#custom-update {
-      padding: 0 12px;
+#network{
+    transition: all .3s ease;
+    padding: 0 12px;
+    background-color: @temperature;
 }
+#bluetooth{
+transition: all .3s ease;
+padding: 0 12px;
+background-color: @temperature;
+}
+#pulseaudio{
+    transition: all .3s ease;
+    padding: 0 12px;
+    background-color: @temperature;
+}
+#mpris{
+    transition: all .3s ease;
+    padding: 0 12px;
+}
+#submap{
+    transition: all .3s ease;
+    background-color: @temperature;
+        padding: 0 12px;
+  }
+#custom-system_update{
+    transition: all .3s ease;
+    padding: 0 12px;
+    background-color: @temperature;
+}
+#custom-screenrecording-indicator{
+    transition: all .3s ease;
+    padding: 0 12px;
+    background-color: @temperature;
+}
+

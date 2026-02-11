@@ -4,8 +4,10 @@
 	------------*/
 
 	"modules-left": [
-		"group/theme_switcher",
+		"group/main_menu",
+  //  "custom/left_div#2",
 		"hyprland/workspaces",
+	//	"custom/right_div#5",
 		"hyprland/window"
 	],
 	"modules-center": [
@@ -29,17 +31,28 @@
 	],
 	"modules-right": [
 		"mpris",
+		"custom/left_div#2",
     "pulseaudio",
+    "hyprland/submap",
     "custom/screenrecording-indicator",
     "network",
 		"bluetooth",
 		"custom/system_update",
-		"custom/power_menu"
+    "custom/right_div#5",
+		"group/hypr_switcher"
 	],
 
 	/*-------------
 		options
 	-------------*/
+
+"tray": {
+    "icon-size": 18,
+    "spacing": 11,
+    "icons": {
+
+    }
+},
 
 	"layer": "bottom",
 	// "output":
@@ -94,20 +107,6 @@
 		// "tooltip":
 		"tooltip-format": "{:%I:%M %p}"
 	},
-
-"cava": {
-    "cava_config": "/home/arthur/.config/cava/config",
-    "framerate": 120,
-    "autosens": 1,
-    "bars": 12,
-    "method": "pipewire",
-    "source": "auto",
-    "bar_delimiter": 0,
-    "input_delay": 2,
-    "sleep_timer": 2,
-    "hide_on_silence": true,
-    "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ]
-},
 
 	/*--------------
 		calendar
@@ -180,7 +179,7 @@
     "tooltip": true,
     "max-length": 9,
     "min-length": 9,
-    "on-click": "alacritty --class=Impala --hold -e dust",
+    "on-click": "alacritty --class=Impala --hold -e sudo dust 2> /dev/null",
     "tooltip-format": "{used} out of {total} used."
 },
 
@@ -278,6 +277,7 @@
 		"rewrite": {
 			"^$": "Desktop",
 			// "^Alacritty$": "btop++",
+      "com.github.PintaProject.Pinta": "Pinta Image Editor",
 			"cava": "CAVA Audio Visualizer",
 			"firefox": "Mozilla Firefox",
 			"btop": "BTOP++ System Information",
@@ -338,12 +338,20 @@
 		"cursor": true
 	},
 
- 
+"hyprland/submap": {
+	"format": "󰊴",
+  "min-length": 2,
+	"max-length": 2,
+  "justify": "center",
+  "on-click": "hyprctl dispatch submap",
+  "tooltip": true,
+	"tooltip-format": "SUPER + CTRL + G to disable"
+},
 
-	"group/theme_switcher": {
+	"group/main_menu": {
 		"orientation": "horizontal",
 		"modules": [
-			"custom/theme_switcher",
+			"custom/menu_open",
 			"custom/user"
 		],
 		"drawer": {
@@ -354,54 +362,21 @@
 		}
 	},
 
-	"custom/theme_switcher": {
-		"exec": "~/.config/waybar/scripts/theme-switcher.sh",
-		// "exec-if":
-		// "exec-on-event":
-		// "hide-empty-text":
-		"return-type": "json",
-		// "interval":
-		// "restart-interval":
-		// "signal":
-		"format": "{}",
+	"custom/menu_open": {
+
+		"format": ">",
 		// "format-icons":
 		// "rotate":
 		"min-length": 4,
 		"max-length": 4,
 		"on-click": "calos-menu",
-		// "on-click-middle":
-		// "on-click-right": "~/.config/waybar/scripts/theme-switcher.sh prev"
-		// "on-scroll-up":
-		// "on-scroll-down":
-		// "smooth-scrolling-threshold":
-		"tooltip": false,
-		// "tooltip-format":
-		// "escape":
-	},
+		"tooltip": false,	},
 
 	"custom/user": {
 		"exec": "id --user --name",
-		// "exec-if":
-		// "exec-on-event":
-		// "hide-empty-text":
-		// "return-type":
-		// "interval":
-		// "restart-interval":
-		// "signal":
 		"format": "{}",
-		// "format-icons":
-		// "rotate":
-		// "min-length":
-		// "max-length":
 		"on-click": "calos-menu",
-		// "on-click-middle":
-		// "on-click-right":
-		// "on-scroll-up":
-		// "on-scroll-down":
-		// "smooth-scrolling-threshold":
 		"tooltip": false
-		// "tooltip-format":
-		// "escape":
 	},
 
 	"custom/distro": {
@@ -484,8 +459,31 @@
 		"tooltip": false
 	},
 
-	"custom/power_menu": {
+	"group/hypr_switcher": {
+		"orientation": "horizontal",
+		"modules": [
+			"custom/hypr_menu",
+			"custom/version"
+		],
+		"drawer": {
+			// "transition-duration":
+			// "transition-left-to-right":
+			// "children-class":
+			// "click-to-reveal":
+		}
+	},
+
+	"custom/hypr_menu": {
 		"format": "\uf359",
+		"on-click": "alacritty --class=About --hold -e fastfetch -c ~/.config/fastfetch/config-small.jsonc",
+		"tooltip": false,
+    "min-length": 2,
+		"max-length": 2
+	},
+
+  	"custom/version": {
+		"exec": "pacman -Qe hyprland",
+		"format": "{} ",
 		"on-click": "alacritty --class=About --hold -e fastfetch -c ~/.config/fastfetch/config-small.jsonc",
 		"tooltip": false
 	},

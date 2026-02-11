@@ -29,13 +29,18 @@ update-packages() {
     notify-send 'No updates available' -i 'package-installed-updated'
   else
     if ((repo > 0)); then
-      printf '\n%bUpdating pacman packages...%b\n' "$BLU" "$RST"
-      sudo pacman -Syu
+      printf '\n%bPackages pending updates:%b\n' "$BLU" "$RST"
+      echo
+      pacman -Qu
+      gum confirm --selected.background="111" --prompt.foreground="#6A8EAA" --padding="1 3" "Perform system update?" && sudo pacman -Syu --noconfirm || exit
     fi
 
     if ((aur > 0)); then
-      printf '\n%bUpdating AUR packages...%b\n' "$BLU" "$RST"
-      "$HELPER" -Syu
+      printf '\n%bAUR packages pending updates:%b\n' "$BLU" "$RST"
+      echo
+      paru -Qu
+      echo
+      gum confirm --selected.background="111" "Update AUR packages?" && paru -Syu --noconfirm --skipreview --removemake || exit
     fi
 
     notify-send 'Update Complete' -i 'package-install'
@@ -62,7 +67,7 @@ main() {
   local action=$1
   case $action in
   start)
-    printf '%bChecking for updates...%b' "$BLU" "$RST"
+    gum spin -s minidot --spinner.foreground="111" --padding="1 1" --title="Initializing update script..." -- sleep 1.2
     check-updates
     update-packages
     ;;
