@@ -18,4 +18,4 @@ This is my personal waybar configuration in calOS, forked over from the great me
 
 ### How 2 Install
 
-Just cloning the repo is enough for basic functionality. Install `gum` if you want to utilize the system update script. Pay close attention to styles/waybar.css as those are your main accent colors (for the dividers). Can be edited as you see fit.
+Just cloning the repo is enough for basic functionality. Install `gum` if you want to utilize the system update script. Pay close attention to styles/waybar.css as those are your main accent colors (for the dividers). Open up the `config.jsonc` file and edit what applications/binaries you wish to run on click/which terminal you want to utilize. There are some defaults for my own OS on their as well that can be easily removed (such as the gamemode script). Enjoy!
