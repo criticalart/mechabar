@@ -14,4 +14,8 @@ This is my personal waybar configuration in calOS, forked over from the great me
 * The middle of the waybar helps monitor your system specs (such as temperature, RAM, CPU usage, etc.)
 * Your right portion of the waybar interacts with audio (play, pause, next, volume control) and utilizes bluetui + impala for connnectivity controls.
 * A system update script lives in the top right as well, click on it to check for updates. Will periodically browse pacman repos + AUR to check if updates are available.
-* Hyprland version + easter egg on the far right
+* its a fucking waybar skin why are you looking at the features list lmao
+
+### How 2 Install
+
+Just cloning the repo is enough for basic functionality. Install `gum` if you want to utilize the system update script. Pay close attention to styles/waybar.css as those are your main accent colors (for the dividers). Can be edited as you see fit.
