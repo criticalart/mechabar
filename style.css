@@ -2,7 +2,7 @@
 @import "styles/modules-left.css";
 @import "styles/modules-right.css";
 @import "theme.css";
-@import "../calos/current/theme/waybar.css";
+@import "styles/waybar.css";
 
 * {
   font-family: 'JetBrainsMono Nerd Font';
