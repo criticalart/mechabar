@@ -4,6 +4,7 @@ This is my personal waybar configuration in calOS, forked over from the great me
 
 <p align="center">
 <img width="3440" height="424" alt="2026-02-10-200355_hyprshot" src="https://github.com/user-attachments/assets/0fdb5148-0bb3-4575-ad73-1d752d0aa1b7" />
+<img width="3440" height="349" alt="image" src="https://github.com/user-attachments/assets/3b6606c7-3fbd-4590-8b2a-bee359ff13d6" />
 <img width="3440" height="658" alt="2026-02-10-200412_hyprshot" src="https://github.com/user-attachments/assets/73e72b62-8d04-4900-b7bd-cffc15c7ab8f" />
 <img width="3440" height="560" alt="2026-02-10-200436_hyprshot" src="https://github.com/user-attachments/assets/9628a407-6bf5-4298-a553-b2b51b22fe6e" />
 </p>
