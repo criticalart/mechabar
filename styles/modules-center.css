@@ -1,44 +1,44 @@
-@import "../theme.css";
+@import "../colors.css";
 
 /* temperature */
 
-#custom-left_div.2 {
+#custom-tempdiv label {
 	color: @temperature;
 }
-#temperature {
+#custom-temperature {
 	background-color: @temperature;
 }
 
 /* memory */
 
-#custom-left_div.3 {
+#custom-memdiv label {
 	background-color: @temperature;
 	color: @memory;
 }
-#memory {
+#custom-memory {
 	background-color: @memory;
 }
 
 /* cpu */
 
-#custom-left_div.4 {
+#custom-cpudiv label {
 	background-color: @memory;
 	color: @cpu;
 }
-#cpu {
-	background-color: @cpu;
+#custom-cpu {
+	background-color: @memory;
 }
-#custom-left_inv.1 {
+#custom-leftinvdiv label {
 	color: @cpu;
 }
 
 /* distro icon */
 
-#custom-left_div.5,
-#custom-right_div.2 {
+#custom-leftdistrodiv label,
+#custom-rightdistrodiv label {
 	color: @accent;
 }
-#custom-distro {
+#custom-distro label {
 	padding: 0 10px 0 5px;
 	font-size: 23px;
 	background-color: @accent;
@@ -47,17 +47,16 @@
 
 /* idle inhibitor & time */
 
-#custom-right_inv.1 {
+#custom-rightinvdiv label {
 	color: @time;
 }
 #idle_inhibitor {
 	background-color: @time;
 }
-#clock.time {
-	padding-right: 6px;
+#custom-clock.time {
 	background-color: @time;
 }
-#custom-right_div.3 {
+#custom-timediv label {
 	background-color: @date;
 	color: @time;
 }
@@ -66,36 +65,18 @@
 
 #clock.date {
 	padding-left: 6px;
-	background-color: @date;
+	background-color: @time;
 }
-#custom-right_div.4 {
+#custom-datediv label {
 	background-color: @tray;
 	color: @date;
 }
 
-/* quick settings */
+/* disk */
 
-#network {
-
-	padding: 0 6px;
-}
-#bluetooth {
-
-	padding: 0 8px;
-}
-#custom-system_update {
-
-	padding: 0 8px;
-}
-#custom-right_div.5 {
+#custom-diskdiv label {
 	color: @tray;
 }
-
-/* temperature */
-
-#custom-left_div.2 {
-	color: @temperature;
-}
-#disk {
+#custom-disk {
 	background-color: @temperature;
 }

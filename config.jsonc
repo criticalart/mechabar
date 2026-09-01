@@ -5,40 +5,41 @@
 
 	"modules-left": [
 		"group/main_menu",
-  //  "custom/left_div#2",
 		"hyprland/workspaces",
-	//	"custom/right_div#5",
 		"hyprland/window"
 	],
 	"modules-center": [
-		"custom/left_div#2",
-		"temperature",
-		"custom/left_div#3",
-		"memory",
-		"custom/left_div#4",
-		"cpu",
-		"custom/left_inv#1",
-		"custom/left_div#5",
+		"custom/tempdiv",
+		"custom/temperature",
+		"custom/memdiv",
+		"custom/cpu",
+		"custom/cpudiv",
+		"custom/clock#time",
+		"custom/leftinvdiv",
+		"custom/leftdistrodiv",
 		"custom/distro",
-		"custom/right_div#2",
-		"custom/right_inv#1",
-		"clock#time",
-		"custom/right_div#3",
+		"custom/rightdistrodiv",
+		"custom/rightinvdiv",
 		"clock#date",
-		"custom/right_div#4",
-		"disk",
-		"custom/right_div#5"
+		"custom/timediv",
+		"custom/memory",
+		"custom/datediv",
+		"custom/disk",
+		"custom/diskdiv"
 	],
 	"modules-right": [
 		"mpris",
-		"custom/left_div#2",
+    "cava",
+		"custom/tempdiv",
     "pulseaudio",
-    "hyprland/submap",
+    "custom/gamemode",
+    "custom/notifications",
+    "custom/bluelight",
     "custom/screenrecording-indicator",
     "network",
 		"bluetooth",
 		"custom/system_update",
-    "custom/right_div#5",
+    "custom/diskdiv",
 		"group/hypr_switcher"
 	],
 
@@ -67,11 +68,11 @@
 	"spacing": 0,
 	// "name":
 	"mode": "dock",
-	// "start_hidden":
+  // "start_hidden": true,
 	// "modifier-reset":
 	// "exclusive":
 	// "fixed-center":
-	// "passthrough":
+	// ":
 	// "ipc":
 	// "id":
 	"reload_style_on_change": true,
@@ -84,29 +85,22 @@
   "bluetooth": {
     "format": "",
     "format-disabled": "󰂲",
+    "min-length": 2,
+    "max-length": 2,
     "format-connected": "",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "alacritty --class=bluetui -e bluetui"
+    "on-click": "alacritty --class=Bluetui -e bluetui"
   },
 
-	"clock#time": {
-		// "interval":
-		"format": " {:%H:%M}",
-		// "timezone":
-		// "timezones":
-		// "locale":
-		"min-length": 7,
-		"max-length": 7,
-		// "rotate": 0,
-		// "on-click":
-		// "on-click-middle":
-		// "on-click-right":
-		// "on-scroll-up":
-		// "on-scroll-down":
-		// "smooth-scrolling-threshold":
-		// "tooltip":
-		"tooltip-format": "{:%I:%M %p}"
-	},
+"custom/clock#time": {
+    "exec": "~/.config/waybar/scripts/clock.sh",
+    "return-type": "json",
+    "format": "{}",
+    "min-length": 9,
+    "max-length": 9,
+    "on-click": "qs -c clock",
+    "tooltip": true
+},
 
 	/*--------------
 		calendar
@@ -118,8 +112,8 @@
 		// "timezone":
 		// "timezones":
 		// "locale":
-		"min-length": 8,
-		"max-length": 8,
+		"min-length": 9,
+		"max-length": 9,
 		// "rotate":
 		// "on-click":
 		// "on-click-middle":
@@ -151,59 +145,37 @@
 		}
 	},
 
-	"cpu": {
-		"interval": 10,
-		"format": "󰍛 {usage}%",
-		"format-warning": "󰀨 {usage}%",
-		"format-critical": "󰀨 {usage}%",
-		"min-length": 7,
-		"max-length": 7,
-		// "rotate":
-		"states": {
-			"warning": 75,
-			"critical": 90
-		},
-		// "on-click": "alacritty --class=Impala -e btop -p 2",
-		// "on-click-middle":
-		// "on-click-right":
-		// "on-scroll-up":
-		// "on-scroll-down":
-		// "smooth-scrolling-threshold":
-		"tooltip": false
-	},
-
-  "disk": {
-    "interval": 60,
-    "format": " {free}",
-    "path": "/",
+"custom/cpu": {
+    "interval": 3,
+    "exec": "~/.config/waybar/scripts/cpu.sh",
+    "return-type": "json",
+    "format": "{}",
     "tooltip": true,
-    "max-length": 9,
     "min-length": 9,
-    "on-click": "alacritty --class=Impala --hold -e sudo dust 2> /dev/null",
-    "tooltip-format": "{used} out of {total} used."
+    "max-length": 9,
+    "on-click": "alacritty --class=kernel -e sudo kmon"
 },
 
-	"memory": {
-		"interval": 10,
-		"format": "󰘚 {used:0.1f}GB",
-		"format-warning": "󰀧 {percentage}%",
-		"format-critical": "󰀧 {percentage}%",
-		// "rotate":
-		"states": {
-			"warning": 75,
-			"critical": 90
-		},
-		"min-length": 9,
-		"max-length": 9,
-		// "on-click":
-		// "on-click-middle":
-		// "on-click-right":
-		// "on-scroll-up":
-		// "on-scroll-down":
-		// "smooth-scrolling-threshold":
-		// "tooltip":
-		"tooltip-format": "Memory Used: {used:0.1f} GB / {total:0.1f} GB"
-	},
+"custom/disk": {
+    "interval": 600,
+    "exec": "~/.config/waybar/scripts/disk.sh",
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "on-click": "alacritty --class=dust -e ~/.config/waybar/scripts/dust.sh",
+    "max-length": 9,
+    "min-length": 9
+},
+
+"custom/memory": {
+    "interval": 5,
+    "exec": "~/.config/waybar/scripts/memory.sh",
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "max-length": 9,
+    "min-length": 9
+},
 
 	"mpris": {
 		// "player":
@@ -229,8 +201,35 @@
 		// "dynamic-separator":
 		// "dynamic-importance-order":
 		// "min-length":
-		"max-length": 1000
+		"max-length": 85
 	},
+
+"cava": {
+        // "cava_config": "$XDG_CONFIG_HOME/cava/config_cmus",
+        "framerate": 30,
+        "autosens": 0,
+        "sensitivity": 1,
+        "bars": 14,
+        "min-length": 1,
+        "max-length": 14,
+        "lower_cutoff_freq": 50,
+        "higher_cutoff_freq": 10000,
+        "hide_on_silence": false,
+        "sleep_timer": 1,
+        "format_silent": "             ",
+        "method": "pipewire",
+        "source": "cmus_audio.monitor",
+        "data_format": "ascii",
+        "stereo": true,
+        "reverse": true,
+        "bar_delimiter": 0,
+        "monstercat": false,
+        "waves": false,
+        "noise_reduction": 0.55,
+        "input_delay": 2,
+        "format-icons": [ " ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+        "on-click": "playerctl play-pause"
+    },
 
   "network": {
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
@@ -241,7 +240,7 @@
     "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-disconnected": "Disconnected",
-    "interval": 3,
+    "interval": 10,
     "spacing": 1,
     "on-click": "alacritty --class=Impala -e impala"
   },
@@ -259,48 +258,64 @@
     }
   },
 
-	  "temperature": {
-    //"thermal-zone": 1,
-   "interval": "4",
-   "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
-   "critical-threshold": 70,
-   "format-critical": "  {temperatureC}°C",
-   "format": "  {temperatureC}°C ",
-   "format-icons": ["", "", ""],
-   "max-length": 9,
-   "min-length": 9,
-   "tooltip": false 
-  },
+"custom/temperature": {
+    "interval": 4,
+    "exec": "~/.config/waybar/scripts/temperature.sh",
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "max-length": 9,
+    "min-length": 9
+},
 
 	"hyprland/window": {
+    "tooltip": true,
+    "tooltip-format": "Right Click to Exit",
 		"format": "{class}",
 		"rewrite": {
-			"^$": "Desktop",
+			"^$": "",
 			// "^Alacritty$": "btop++",
-      "com.github.PintaProject.Pinta": "Pinta Image Editor",
-			"cava": "CAVA Audio Visualizer",
-			"firefox": "Mozilla Firefox",
-			"btop": "BTOP++ System Information",
-      "cmus": "cmus Music Player",
-      "vesktop": "Discord",
-      "steam": "Steam",
+      "com.github.PintaProject.Pinta": "  Pinta Image Editor",
+			"cava": "  CAVA Audio Visualizer",
+      "Alacritty": "  Alacritty",
+			"firefox": "󰈹  Mozilla Firefox",
+			"btop": "  BTOP++ System Information",
+      "yazi": "  Yazi",
+      "file_chooser": "  Yazi",
+      "System-Update": "󰚰  System Update",
+      "packages": "󱧘  Installed Packages",
+      "About": "󰖷  System Information",
+      "arthur@caliburn": "  arthur@caliburn",
+      "Neovim": "  Neovim",
+      "Calos": "  Neovim",
+      "ffplay": "󰯜  FFmpeg",
+      "pqiv": "  pqiv",
+      "kernel": "󰘚  Kernel Manager",
+      "cmus": "󰝚  cmus Music Player",
+      "vesktop": "  Discord",
+      "steam": "  Steam",
+      "Bluetui": "󰂯  Bluetui",
+      "Impala": "󰖩  Impala",
+      "Wiremix": "󱡬  Wiremix",
+      "clipse": "  Clipse",
+      "dust": "  Dust",
       "FFPWA-01K961PSAZSCYS2324FFDRTC7Q": "Apple Music",
-      "FFPWA-01K965RT5B50H7XFYV0EAQN4B8": "ArchLinux Wiki",
+      "FFPWA-01K965RT5B50H7XFYV0EAQN4B8": "󰣇  ArchLinux Wiki",
       "FFPWA-01KAC9901ABNXA5Q8EHX1KRDFV": "HBO Max",
-      "FFPWA-01K966XKVA9QGPGYZB5K84ZBR8": "Hyprland Wiki"
+      "FFPWA-01K966XKVA9QGPGYZB5K84ZBR8": "  Hyprland Wiki"
 		},
 		// "separate-outputs":
 		"icon": false,
 		// "icon-size":
 		// "min-length":
 		// "max-length":
-		"tooltip": false,
+    "on-click-right": "hyprctl dispatch 'hl.dsp.window.close()'",
 		"swap-icon-label": false
 	},
 
 	"hyprland/windowcount": {
 		"format": "[{}]",
-		// "format-empty":
+		//"format-empty": "",
 		// "format-windowed":
 		// "format-fullscreen":
 		// "separate-outputs":
@@ -309,23 +324,58 @@
 		"swap-icon-label": false
 	},
 
-	"hyprland/workspaces": {
+	/*"hyprland/workspaces": {
 		// "active-only":
 		// "hide-active":
 		// "all-outputs":
+    "on-scroll-up": "hyprctl dispatch workspace r-1",
+    "on-scroll-down": "hyprctl dispatch workspace r+1",
 		"format": "{icon}",
 		"format-icons": {
-    //  "1": "\ue745",
     //  "2": "\ue795",
      // "3": "\uf1b6",
-		  "active": "",
+		  "active": "",
 			"default": ""
 		},
 		"persistent-workspaces": {
 			"*": 5
 		},
 		// "persistent-only":
-		// "show-special":
+		// "show-special": true,
+		// "special-visible-only":
+		// "sort-by":
+		// "window-rewrite":
+		// "window-rewrite-default":
+		// "format-window-separator":
+		// "move-to-monitor":
+		// "ignore-workspaces":
+		// "on-scroll-up":
+		// "on-scroll-down":
+		"cursor": true
+	},*/
+
+"hyprland/workspaces": {
+		// "active-only":
+		// "hide-active":
+		// "all-outputs":
+    "on-scroll-up": "hyprctl dispatch workspace r-1",
+    "on-scroll-down": "hyprctl dispatch workspace r+1",
+		"format": "{icon}",
+		"format-icons": {
+      "1": "I",
+      "2": "II",
+      "3": "III",
+      "4": "IV",
+      "5": "V",
+      "home": "",
+      "game":"󰊴",
+		},
+		"persistent-workspaces": {
+			"*": 5
+		},
+		// "persistent-only":
+		"show-special": true,
+    "tooltip": false,
 		// "special-visible-only":
 		// "sort-by":
 		// "window-rewrite":
@@ -337,16 +387,6 @@
 		// "on-scroll-down":
 		"cursor": true
 	},
-
-"hyprland/submap": {
-	"format": "󰊴",
-  "min-length": 2,
-	"max-length": 2,
-  "justify": "center",
-  "on-click": "hyprctl dispatch submap",
-  "tooltip": true,
-	"tooltip-format": "SUPER + CTRL + G to disable"
-},
 
 	"group/main_menu": {
 		"orientation": "horizontal",
@@ -364,97 +404,82 @@
 
 	"custom/menu_open": {
 
-		"format": ">",
+		"format": "󰀻",
 		// "format-icons":
 		// "rotate":
 		"min-length": 4,
 		"max-length": 4,
-		"on-click": "calos-menu",
-		"tooltip": false,	},
+		"on-click": "calos-walker-launch corner",
+		"tooltip": true,
+    "tooltip-format": "System Menu"
+  },
 
 	"custom/user": {
 		"exec": "id --user --name",
 		"format": "{}",
-		"on-click": "calos-menu",
-		"tooltip": false
+		"on-click": "calos-walker-launch corner",
+		"tooltip": true,
+    "tooltip-format": "System Menu"
 	},
 
 	"custom/distro": {
 		"format": "󰣇",
-    "on-click": "calos-walker-app",
-		"tooltip": false
+    "on-click": "calos-walker-launch center",
+		"tooltip": true,
+    "tooltip-format": "App Launcher",
 	},
 
 	/*-------------------
 		left dividers
 	-------------------*/
 
-	"custom/left_div#1": {
+	"custom/tempdiv": {
+		"format": "",
+		"tooltip": false
+	},	
+  "custom/space": {
+		"format": "  ",
+		"tooltip": false
+	},
+	"custom/cpudiv": {
 		"format": "",
 		"tooltip": false
 	},
-	"custom/left_div#2": {
+	"custom/memdiv": {
 		"format": "",
 		"tooltip": false
 	},
-	"custom/left_div#3": {
+	"custom/leftdistrodiv": {
 		"format": "",
 		"tooltip": false
 	},
-	"custom/left_div#4": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/left_div#5": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/left_div#6": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/left_div#7": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/left_div#8": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/left_inv#1": {
+	"custom/leftinvdiv": {
 		"format": "",
 		"tooltip": false
 	},
-	"custom/left_inv#2": {
-		"format": "",
-		"tooltip": false
-	},
+
 
 	/*--------------------
 		right dividers
 	--------------------*/
 
-	"custom/right_div#1": {
+	"custom/rightdistrodiv": {
 		"format": "",
 		"tooltip": false
 	},
-	"custom/right_div#2": {
+	"custom/timediv": {
 		"format": "",
 		"tooltip": false
 	},
-	"custom/right_div#3": {
+	"custom/datediv": {
 		"format": "",
 		"tooltip": false
 	},
-	"custom/right_div#4": {
+	"custom/diskdiv": {
 		"format": "",
 		"tooltip": false
 	},
-	"custom/right_div#5": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/right_inv#1": {
+	"custom/rightinvdiv": {
 		"format": "",
 		"tooltip": false
 	},
@@ -463,37 +488,105 @@
 		"orientation": "horizontal",
 		"modules": [
 			"custom/hypr_menu",
-			"custom/version"
+      "custom/power_menu",
+			"custom/version",
+      "custom/g502-battery",
+      "custom/overlay",
+      "custom/home",
 		],
 		"drawer": {
 			// "transition-duration":
-			// "transition-left-to-right":
+			"transition-left-to-right": false,
 			// "children-class":
-			// "click-to-reveal":
+			"click-to-reveal": false,
 		}
 	},
 
+"custom/g502-battery": {
+    "format": "{text}",
+    "exec": "~/.config/waybar/scripts/g502-battery.sh",
+    "return-type": "json",
+    "interval": 120,
+    "signal": 12,
+    "on-click": "pkill -RTMIN+12 waybar",
+    "min-length": 4,
+    "max-length": 4,
+},
+
 	"custom/hypr_menu": {
-		"format": "\uf359",
-		"on-click": "alacritty --class=About --hold -e fastfetch -c ~/.config/fastfetch/config-small.jsonc",
+		"format": "󰍜",
 		"tooltip": false,
     "min-length": 2,
-		"max-length": 2
+		"max-length": 2,
+    "on-click": "calos-toggle-home"
 	},
 
   	"custom/version": {
-		"exec": "pacman -Qe hyprland",
-		"format": "{} ",
-		"on-click": "alacritty --class=About --hold -e fastfetch -c ~/.config/fastfetch/config-small.jsonc",
-		"tooltip": false
+		"format": "  ",
+		"on-click": "alacritty --class=About -e ~/.config/waybar/scripts/sysinfo.sh",
+		"tooltip": false,
+    "min-length": 4,
+    "max-length": 4,
+	},
+
+  	"custom/overlay": {
+		"format": " 󱂬 ",
+		"on-click": "qs ipc -c overview call overview toggle",
+		"tooltip": false,
+    "min-length": 4,
+    "max-length": 4,
+	},
+
+  	"custom/home": {
+		"format": " 󰋜 ",
+		"on-click": "calos-toggle-home",
+		"tooltip": false,
+    "min-length": 4,
+    "max-length": 4,
+	},
+
+	"custom/power_menu": {
+		"format": " 󰐥 ",
+		"tooltip": false,
+    "min-length": 4,
+    "on-click": "qs -c powermenu",
+		"max-length": 4
 	},
 
     "custom/screenrecording-indicator": {
     "on-click": "calos-cmd-screenrecord",
     "exec": "~/.config/waybar/scripts/screen-recording.sh",
     "signal": 8,
-    "min-length": 3,
-    "max-length": 3,
+    "min-length": 2,
+    "max-length": 2,
+   "return-type": "json"
+  },
+
+    "custom/notifications": {
+    "on-click": "calos-toggle-notifications",
+    "exec": "~/.config/waybar/scripts/notifications.sh",
+    "signal": 9,
+    "min-length": 2,
+    "max-length": 2,
+   "return-type": "json"
+  },
+
+    "custom/bluelight": {
+    "on-click": "calos-toggle-nightlight",
+    "exec": "~/.config/waybar/scripts/bluelight.sh",
+    "signal": 11,
+    "min-length": 2,
+    "max-length": 2,
+   "return-type": "json"
+  },
+
+    "custom/gamemode": {
+    "on-click": "calos-toggle-gamemode",
+    "on-click-right": "calos-toggle-game",
+    "exec": "~/.config/waybar/scripts/submap.sh",
+    "signal": 10,
+    "min-length": 2,
+    "max-length": 2,
    "return-type": "json"
   },
 
@@ -503,7 +596,7 @@
 		// "exec-on-event":
 		// "hide-empty-text":
 		"return-type": "json",
-		"interval": 7200,
+		"interval": 3600,
 		// "restart-interval":
 		// "signal":
 		"format": "{}",

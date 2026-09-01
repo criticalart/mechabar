@@ -1,31 +1,63 @@
-@import "../theme.css";
+@import "../colors.css";
 
 /* theme switcher */
 
-#custom-user {
+#custom-user label {
 	padding-right: 12px;
+  padding-left: 8px;
 	font-weight: normal;
   color: @accent;
 }
 
-#custom-menu_open {
-	font-weight: normal;
+#custom-menu_open label {
+	font-weight: bold;
   color: @accent;
+  font-size: 20px;
 }
+
 
 /* workspaces */
 
-#custom-left_div.1,
-#custom-right_div.1 {
-	color: @workspaces;
-}
 #workspaces {
 	padding: 0 1px;
 
 }
-#workspaces .active label {
-	font-size: 23px;
+
+#workspaces button {
+    min-width: 36px; 
+    padding: 0;
+    margin: 0 3px;
+}
+
+#workspaces button label {
+	font-size: 14px;
 	color: @accent;
+}
+
+#workspaces button.empty label {
+    padding: 0px 0px;
+    font-size: 14px;
+    margin: 0px 3px;
+    border-radius: 8px;
+    color: @temperature;
+    background-color: @background;
+    transition: all 0.1s ease-in-out;
+}
+
+#workspaces button.active label {
+	font-size: 19px;
+	color: @accent;    
+  transition: all 0.2s ease-in-out;
+  min-width: 3px;
+  border-radius: 12px;
+}
+
+#workspaces button:hover {
+    color: @accent;
+    background: @background;
+    border-radius: 15px;
+    border-color: @accent;
+    box-shadow: none;
 }
 
 /* window title & count */
