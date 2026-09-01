@@ -1,22 +1,20 @@
 <div align="center"><h2>more like gaybar lmao</h2></div>
 
-This is my personal waybar configuration in calOS, forked over from the great mechabar (https://github.com/sejjy/mechabar)
-
 <p align="center">
-<img width="3440" height="424" alt="2026-02-10-200355_hyprshot" src="https://github.com/user-attachments/assets/0fdb5148-0bb3-4575-ad73-1d752d0aa1b7" />
-<img width="3440" height="349" alt="image" src="https://github.com/user-attachments/assets/3b6606c7-3fbd-4590-8b2a-bee359ff13d6" />
-<img width="3440" height="658" alt="2026-02-10-200412_hyprshot" src="https://github.com/user-attachments/assets/73e72b62-8d04-4900-b7bd-cffc15c7ab8f" />
-<img width="3440" height="560" alt="2026-02-10-200436_hyprshot" src="https://github.com/user-attachments/assets/9628a407-6bf5-4298-a553-b2b51b22fe6e" />
+<img width="3440" height="207" alt="image" src="https://github.com/user-attachments/assets/460ee2e1-4b09-4c7e-9877-bfaddc19efc2" />
+<img width="3440" height="98" alt="image" src="https://github.com/user-attachments/assets/361972cb-69ff-40e3-8bd4-b1b369365d5d" />
+<img width="3440" height="264" alt="image" src="https://github.com/user-attachments/assets/1fc3987b-292d-4420-b8d3-a45a18b594b4" />
 </p>
 
 ### Features
 
-* Integrates with Walker via the top left (to launch system settings) and the middle (to launch the system applications).
-* The middle of the waybar helps monitor your system specs (such as temperature, RAM, CPU usage, etc.)
-* Your right portion of the waybar interacts with audio (play, pause, next, volume control) and utilizes bluetui + impala for connnectivity controls.
-* A system update script lives in the top right as well, click on it to check for updates. Will periodically browse pacman repos + AUR to check if updates are available.
-* its a fucking waybar skin why are you looking at the features list lmao
+* Complete system integration. Center modules allow you to peak at your system specs (tooltips included for more information). Workspace, start menu, audio/bluetooth/internet controls. 
+* Tons of scripts that help integrate the bar into your system directly, go take a peak.
+* a small cava player in the top right because im an idiot
+* A system update script written in bash (requires `gum` as a dependency) that can tell you when important updates are available. Off by default, add the `pacman` commands in `/sudoers.d/` in order to restore functionality. 
 
 ### How 2 Install
 
-Just cloning the repo is enough for basic functionality. Install `gum` if you want to utilize the system update script. Pay close attention to styles/waybar.css as those are your main accent colors (for the dividers). Open up the `config.jsonc` file and edit what applications/binaries you wish to run on click/which terminal you want to utilize. There are some defaults for my own OS on their as well that can be easily removed (such as the gamemode script). Enjoy!
+clone the repo dummy
+
+you will need to configure config.json and possibly some CSS depending on your hardware/monitor. some things within scripts are hardcoded and need you to edit them to restore functionality but overall things should be just fine. take a look at my main dots to see the full picture [over here](https://github.com/criticalart/calos) 
